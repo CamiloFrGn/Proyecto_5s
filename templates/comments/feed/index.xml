@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comentarios en Inicio	</title>
+	<atom:link href="/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Solo otro sitio de WordPress</description>
+	<lastBuildDate>Tue, 16 May 2023 17:43:34 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.1.1</generator>
+</channel>
+</rss>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Caché de objetos 25/30 objetos usando redis
+Almacenamiento en caché de páginas con redis 
+Content Delivery Network via readymixon-aa540bec6d9bba1a989f-endpoint.azureedge.net
+Caché de base de datos 1/6 consultas en 0.030 segundos usando redis
+
+Served from: _ @ 2023-06-13 21:00:01 by W3 Total Cache
+-->

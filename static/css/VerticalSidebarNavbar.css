@@ -1,0 +1,247 @@
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+    
+body {
+  margin: 0;
+}
+
+
+/* ---------------------------------------------------
+  SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  margin-right: 0.1px;
+  min-width: 40vh;
+  max-width: 40vh;
+  height: 100%;
+  background: #0102b2;
+  color: #fff;
+  transition: all 0.3s;
+
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #ffffff;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #0102b2;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  text-decoration: none;
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+  
+  display: flex; align-items: center;
+  justify-content: flex-start;
+}
+
+#sidebar ul li a:hover {
+  color: #fff;
+  background:  #ffaa00
+}
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: #0102b2;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: #152349;
+  color:#fefefe ;
+}
+
+ul.CTAs {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+a.download {
+  background: #fff;
+  color: #000104;
+}
+
+a.article,
+a.article:hover {
+  background: #fefefe !important;
+  color: #fff !important;
+}
+
+/* ---------------------------------------------------
+  CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(to right, #00b7c1, #009dcb, #007fd3, #005dcf, #0102b2);
+  color: white;
+}
+
+.image-logo {
+  width: 300px;
+  fill: white;
+  padding-right: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.inner-header {
+  height: 65vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  /*Fix for safari gap*/
+  min-height: 100px;
+  max-height: 150px;
+}
+
+.content {
+  position: relative;
+  height: 20vh;
+  text-align: center;
+  background-color: white;
+}
+
+/* Animation */
+
+.parallax>use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .content {
+    height: 30vh;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+.icons{
+  padding: 0px   5px;
+  margin: 0px 10px;
+  width:  36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.button_principal {
+      width: 162px;
+      height: 43px;
+      left: 39px;
+      top: 677px;
+      background-color: #ffaa00;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 15px;
+      transition: all .5s ease;
+  }
+.button_principal:hover{
+  box-shadow: #ffaa00 0px 7px 29px 0px;;
+}

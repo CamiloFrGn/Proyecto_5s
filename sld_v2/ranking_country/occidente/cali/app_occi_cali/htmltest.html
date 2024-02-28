@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f8f8f8;
+		}
+		form {
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			max-width: 500px;
+			margin: 0 auto;
+		}
+		h1 {
+			text-align: center;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		select {
+			padding: 10px;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+			background-color: #f2f2f2;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 100%;
+		}
+		button:disabled {
+			background-color: #bbb;
+			cursor: default;
+		}
+	</style>
+</head>
+<body>
+
+	<form>
+		<h1>My Form</h1>
+		<label for="cluster">Cluster:</label>
+		<select id="cluster" name="cluster" required>
+			<option value="" disabled selected>Select a cluster</option>
+			
+		</select>
+
+		<label for="plant">Plant:</label>
+		<select id="plant" name="plant" required>
+			<option value="" disabled selected>Select a plant</option>
+			<!-- Add your plant options here -->
+		</select>
+
+		<button type="submit" id="submit-button" disabled>Submit</button>
+	</form>
+
+	<script>
+		const form = document.querySelector('form');
+		const clusterSelect = document.querySelector('#cluster');
+		const plantSelect = document.querySelector('#plant');
+		const submitButton = document.querySelector('#submit-button');
+
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();
+			const clusterValue = clusterSelect.value;
+			const plantValue = plantSelect.value;
+			const randomNumber = Math.floor(Math.random() * 10000);
+			const link = document.createElement('a');
+			link.href = `https://example.com/?cluster=${clusterValue}&plant=${plantValue}&random=${randomNumber}`;
+			link.target = '_blank';
+			link.click();
+			form.reset();
+			submitButton.disabled = true;
+		});
+
+		clusterSelect.addEventListener('input', function() {
+			if (clusterSelect.validity.valid && plantSelect.validity.valid) {
+				submitButton.disabled = false;
+			} else {
+				submitButton.disabled = true;
+			}
+		});
+
+		plantSelect.addEventListener('input', function() {
+			if (clusterSelect.validity.valid && plantSelect.validity.valid) {
+				submitButton.disabled = false;
+			} else {
+				submitButton.disabled = true;
+			}
+		});
+	</script>
+
+</body>
+</html>

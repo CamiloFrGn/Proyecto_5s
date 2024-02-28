@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>RANKING SLD</title>
+  <style>
+    body {
+      background-image: url(https://pbs.twimg.com/media/Eu2GYcGVoAIVw-u?format=jpg&name=4096x4096);
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    .logo-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 10px;
+
+    }
+
+    .logo-container img {
+      width: 20%;
+      height: 20%;
+      border-radius: 10px;
+    }
+
+    .logo-container img:hover {
+      transform: rotate(360deg);
+    }
+
+    .title-container {
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 50px;
+      font-family: "Arial", sans-serif;
+      color: white;
+      backdrop-filter: blur(10px);
+      background-color: #1E2D5A;
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #CE3A22, #1E2D5A, #FFFFFF) 1;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 10px;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 10px;
+      font-family: 'calibri';
+      font-size: 18px;
+      border: 1px solid #1f53c5;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    /*button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:disabled {
+      background-color: #bbb;
+      cursor: default;
+    }*/
+
+    .button {
+      display: block;
+      margin: 0 auto;
+      width: 200px;
+      height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background-color: navy;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .button:hover {
+      background-color: lightgreen;
+    }
+
+    .button:disabled {
+      background-color: gray;
+      color: lightgray;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logo-container">
+    <img src="https://i.ibb.co/8MxDft3/CEMEX-LOGO.jpg" alt="CEMEX Logo">
+  </div>
+
+  <div class="title-container">
+    <h1 class="border-rotate">SLD V2 RANKING</h1>
+  </div>
+
+  <form>
+
+    <label for="country">Country:</label>
+    <select name="country" id="country" onchange="filterPlants_country()">
+      <option value="">---Please select---</option>
+      {% for x in paises %}
+      <option value="{{x}}">{{x}}</option>
+      {% endfor %}
+    </select>
+
+
+    <label for="cluster" id="clusterLabel">Cluster:</label>
+    <select name="cluster" id="cluster" onchange="filterPlants()">
+      <option value="">---Please select---</option>
+      {% for x in clusters %}
+      <option value="{{x}}">{{x}}</option>
+      {% endfor %}
+    </select>
+
+    <label for="plant" id="plantLabel">Plant:</label>
+    <select name="plant" id="plant">
+      <option value="">---Please select---</option>
+      {% for x in clusterplants %}
+      <option value="{{x[2]}}">{{x[3]}}</option>
+      {% endfor %}
+
+    </select>
+
+    <input class="button" type="submit" value="Submit" disabled>
+
+  </form>
+
+  <script>
+    const countrySelect = document.getElementById('country');
+    const clusterSelect = document.getElementById('cluster');
+    const clusterLabel = document.getElementById('clusterLabel');
+    const plantSelect = document.getElementById('plant');
+    const plantLabel = document.getElementById('plantLabel');
+    const submitButton = document.querySelector('input[type="submit"]');
+
+
+    // Hide plant select initially
+    plantLabel.style.display = 'none';
+    // Hide plant select initially
+    plant.style.display = 'none';
+
+    // Hide plant select initially
+    clusterLabel.style.display = 'none';
+    // Hide plant select initially
+    cluster.style.display = 'none';
+
+    // Show/hide plant select based on cluster select value
+    const showClusterSelect = () => {
+      if (countrySelect.value == '') {
+        clusterLabel.style.display = 'none';
+        cluster.style.display = 'none';
+      }
+      else {
+        clusterLabel.style.display = 'block';
+        cluster.style.display = 'block';
+        if (countrySelect.value !== 'Colombia') {
+          plantLabel.style.display = 'none';
+          plant.style.display = 'none';
+          plantSelect.value = '';
+        } else {
+          if (clusterSelect.value == '') {
+            plantLabel.style.display = 'none';
+            plant.style.display = 'none';
+            plantSelect.value = '';
+          } else {
+
+            plantLabel.style.display = 'block';
+            plant.style.display = 'block';
+          }
+
+        }
+
+
+      }
+
+
+
+    };
+    countrySelect.addEventListener('change', showClusterSelect);
+
+    // Show/hide plant select based on cluster select value
+    const showPlantSelect = () => {
+      if (countrySelect.value !== 'Colombia') {
+        plantLabel.style.display = 'none';
+        plant.style.display = 'none';
+        plantSelect.value = '';
+      }
+      else {
+        if (countrySelect.value == 'Colombia') {
+          if (clusterSelect.value !== 'CLUSTER ANTIOQUIA' && clusterSelect.value !== 'CLUSTER CENTRO') {
+            plantLabel.style.display = 'block';
+            plant.style.display = 'block';
+          } else {
+            plantLabel.style.display = 'none';
+            plant.style.display = 'none';
+            plantSelect.value = '';
+          }
+        } else {
+          plantLabel.style.display = 'none';
+          plant.style.display = 'none';
+          plantSelect.value = '';
+        }
+
+      }
+
+
+
+    };
+    clusterSelect.addEventListener('change', showPlantSelect);
+
+
+    // Enable/disable submit button based on form validity
+    const enableSubmitButton = () => {
+      if (countrySelect.value !== "Colombia" && clusterSelect.value) {
+        submitButton.disabled = false;
+      }
+      else {
+        if (clusterSelect.value && (clusterSelect.value === 'CLUSTER ANTIOQUIA' || clusterSelect.value === 'CLUSTER CENTRO')) {
+          submitButton.disabled = false;
+        } else if (clusterSelect.value && plantSelect.value) {
+          submitButton.disabled = false;
+        } else {
+          submitButton.disabled = true;
+        }
+      }
+
+
+    };
+    clusterSelect.addEventListener('change', enableSubmitButton);
+    plantSelect.addEventListener('change', enableSubmitButton);
+
+    // Create and open hyperlink when form is submitted
+    // Create and open hyperlink when form is submitted
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const clusterValue = clusterSelect.value;
+      const plantValue = plantSelect.value;
+      const randomNumber = Math.floor(Math.random() * 10000);
+      let url = `http://cotpasigconc:5000/sld/v2/cluster=${clusterValue}&rannum=${randomNumber}`;
+      if (plantValue) {
+        url += `&plant=${plantValue}`;
+      }
+      window.open(url, '_blank');
+    });
+
+    const plantsByCluster = JSON.parse('{{ filter_dic|safe }}');
+
+    function filterPlants() {
+      const selectedCluster = document.getElementById('cluster').value;
+      const plantSelect = document.getElementById('plant');
+      plantSelect.innerHTML = '';
+
+      const chooseOneOption = document.createElement('option');
+      chooseOneOption.text = 'Choose one';
+      chooseOneOption.value = '';
+      plantSelect.add(chooseOneOption);
+
+      const plants = plantsByCluster[selectedCluster] || [];
+      plants.forEach((plant) => {
+        const option = document.createElement('option');
+        option.text = plant;
+        plantcod = plant.substring(0, 4)
+        option.value = plantcod;
+        plantSelect.add(option);
+      });
+    }
+
+    const plantsByCluster_country = JSON.parse('{{ filter_dic_country|safe }}');
+
+    function filterPlants_country() {
+      const selectedCluster = document.getElementById('country').value;
+      const plantSelect = document.getElementById('cluster');
+      plantSelect.innerHTML = '';
+
+      const chooseOneOption = document.createElement('option');
+      chooseOneOption.text = 'Choose one';
+      chooseOneOption.value = '';
+      plantSelect.add(chooseOneOption);
+
+      const plants = plantsByCluster_country[selectedCluster] || [];
+      plants.forEach((plant) => {
+        const option = document.createElement('option');
+        option.text = plant;
+
+        option.value = plant;
+        plantSelect.add(option);
+      });
+    }
+  </script>
+
+
+</body>
+
+</html>

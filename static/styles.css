@@ -1,0 +1,319 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: Century Gothic;
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #0e0ea6;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/*Texto Principal*/
+h1 {
+  text-align: center;
+  color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.Minimo {
+  text-align:justify;
+  color: red;
+  font-weight: bold;
+}
+
+.Puntos {
+  text-align:justify;
+  color: #0e0ea6;
+  font-weight: bold;
+}
+
+button{
+  text-align: left;
+  margin-top: 20px;
+  text-decoration: none;
+  background-color: #0e0ea6;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.back-button {
+  text-align: left;
+  margin-top: 20px;
+  text-decoration: none;
+  background-color: #0e0ea6;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.back-button:hover {
+  background-color: #0e0ea6;
+}
+
+/* Estilo para el select */
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Estilo para las opciones del select */
+select option {
+  font-size: 14px;
+  /* Otros estilos que desees aplicar a las opciones */
+}
+
+fieldset img {
+  /* Modificación de todas las imagenes */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+/*Texto en negrilla*/
+label[for^="pregunta_"] {
+  font-weight: bold;
+}
+
+/* file-name hace referencia al Estilo de Elegir archivo*/
+.file-name {
+  background-color: #ced8f6;
+  width: 400px;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px dashed #999;
+}
+.file-name::-webkit-file-upload-button {
+  color: black;
+  font-weight: bold;
+}
+
+.file-name::-moz-file-upload-button {
+  color: black;
+  font-weight: bold;
+}
+.file-name::-ms-browse {
+  color: black;
+  font-weight: bold;
+}
+
+.file-name::file-selector-button {
+  height: 20px;
+  border-radius: 5px;
+  border: 0.1px solid gray;
+  transition: 0.4s;
+}
+
+.file-name::file-selector-button:hover {
+  background-color: green;
+}
+
+form {
+  width: 80%;
+  max-width: 1000px; /* Aumenté el ancho máximo para evitar cortar textos */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: red;
+}
+
+.Apoyo {
+  font-weight: bold;
+  text-align: justify;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="file"],
+input[type="text"] {
+  width: calc(100% - 20px); /* Ajusté el ancho para considerar el relleno */
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.container{
+  border: 2px solid #0e0ea6;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 10px 0;
+}
+/* Radio Cumple o no Cumple */
+.Cumplimiento span {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+
+/* Estilo para los radios */
+.Cumplimiento input[type="radio"] {
+  opacity: 0; /* Hace los radios transparentes */
+  position: absolute; /* Los posiciona absolutamente para no afectar el diseño */
+}
+
+.Cumplimiento input[type="radio"] + label {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 2px solid #0e0ea6;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.Cumplimiento input[type="radio"]:checked + label {
+  background-color: #0e0ea6;
+  color: #fff;
+}
+/* Muestra el mensaje de error cuando no hay opción seleccionada */
+.Cumplimiento input[type="radio"]:invalid + label + span {
+  display: inline-block;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/*Matris de calificaciones*/
+
+.calificaciones span {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+
+.calificaciones input[type="radio"] {
+  opacity: 0; /* Hace los radios transparentes */
+  position: absolute; /* Los posiciona absolutamente para no afectar el diseño */
+}
+
+.calificaciones input[type="radio"] + label {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 2px solid #0e0ea6;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.calificaciones input[type="radio"]:checked + label {
+  background-color: #0e0ea6;
+  color: #fff;
+}
+/* Muestra el mensaje de error cuando no hay opción seleccionada */
+.calificaciones input[type="radio"]:invalid + label + span {
+  display: inline-block;
+}
+
+/* Estilo por defecto para div con clase Respuesta */
+.Respuesta {
+  border: 2px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+/*Observaciones*/
+.Observaciones-container {
+  position: relative;
+}
+
+.Observaciones {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+}
+
+.Observaciones::placeholder {
+  color: gray;
+}
+
+.Observaciones:not(:placeholder-shown) + label::after {
+  content: "Máximo 200 caracteres";
+  color: gray;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+/* Estilos adicionales para hacer que los botones parezcan botones */
+.botones label {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Estilos específicos para las etiquetas "Clasificar", "Ordenar", etc. */
+
+/* Estilos para los radios */
+input[type="radio"] {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Estilos para el botón */
+#submitBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0e0ea6;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#submitBtn:hover {
+  background-color: #45a049;
+}
+/* Estilos base */
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  fieldset img {
+    max-width: 100%;
+    height: auto;
+  }
+}

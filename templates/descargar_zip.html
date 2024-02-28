@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar 5s</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}" />
+</head>
+<body>
+    <h1>Descargar imagenes de auditoria 5s</h1>
+    <form action="/descargar_zip" method="get">
+        <label for="nombre_zip">Ingresar el ID del formulario el cual deseas descargar:</label>
+        <input type="text" id="nombre_zip" name="nombre_zip" required>
+        <button type="submit">Descargar</button>
+        <a href="/" class="back-button">Volver a la pagina principal</a>
+    </form>
+</body>
+</html>

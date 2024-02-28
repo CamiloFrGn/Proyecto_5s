@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: #002FB4;
+    font-size: 16px;
+  }
+  
+  .wrapper {
+    min-height: 100vh;
+  } 
+  .image-form{
+    width: 50%;
+  }
+  
+
+  .image-container{
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #label_download{
+    margin-bottom: 0px;
+    margin-left: 20px;
+  
+  }
+
+  #download{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+ 
+  }
+  .btn-primary {
+    color: #fff !important;
+    background-color: #FFBC00 !important;
+    border: none !important;
+    margin-top: 20px !important;
+  }
+  
+  .form-control {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  
+  .btn-send {
+
+    background-color: #002FB4;
+    color: #f3f4f5;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all .5s ease;
+    margin: 30px 0px;
+  }
+  .image-icon{
+    width: 28px;
+    height: 28px;
+  }
+  .form-cont {
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+  
+  
+  }
+  
+  .wrapper-form {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  
+  
+  h1 {
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    margin: 0px;
+    font-weight: bold;
+  
+  }
+  .form-control{
+    margin-bottom: 10px !important;
+  }
+  
+  .item {
+    padding:2.5px 0px;
+    text-align: start;
+  }
+  
+  .btn-block {
+    text-align: center;
+  }
+  
+  .btn-menu {
+    display: none;
+  
+  }
+  .container-card{
+    max-width: 60%;
+    min-height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+    border-radius: 10px;
+    background-color: whitesmoke;
+    box-shadow: 0rem 0.45rem 0.45rem rgba(0, 0, 0, 0.5);
+    padding:10px  50px;
+  }
+  input[type=file]::file-selector-button {
+    color:#f3f4f5;
+    background-color: #1751ee;
+    border: 0px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  h3{
+    text-align: center;
+    font-weight: bold !important;
+    margin-top: 20px !important;
+  }
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  legend{
+    font-size: 22px !important;
+    font-weight: 500
+  } 
+
+  .form-control{
+    width: 350px !important;
+  }
+  
+  @media (max-width: 1200px) {
+  
+  }
+  @media (max-width: 992px) {
+   
+    .container-card{
+      margin: 0px;
+      padding: 5px 25px;
+      max-width: 100% !important;
+      
+    }
+    form{
+     width: 100%; 
+
+    }
+    .form-cont {
+      padding: 0px;
+      margin-top: 20px;
+    }
+    .form-control{
+      width: 300px !important;
+    }
+  }

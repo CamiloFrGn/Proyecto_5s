@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoria 5s Laboratorios</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <form action="#" method="post" enctype="multipart/form-data" class="Formulario">
+      <a href="/" class="back-button">Volver a la pagina principal</a>
+      <h1>Auditoria 5s Laboratorios</h1>
+      <fieldset>
+      <div class = "container">
+        <label for="pregunta_planta_auditada">*Selecciona la planta auditada</label>
+        <select id="planta_auditada" name="planta" required>
+          <option value="" selected disabled hidden>Selecciona una planta</option>
+          {% for planta in plantas %}
+              <option value="{{ planta }}">{{ planta }}</option>
+          {% endfor %}
+      </select>
+      </div>
+        <div class = "container">
+          <label for="pregunta_auditor">*Lider que recibe la auditoria 5s</label>
+          <input 
+            type="text" 
+            id="auditado" 
+            name="auditado" 
+            required/>
+        </div>
+      </fieldset>
+      <fieldset id="zona1">
+        <legend>Zona 1 Piletas de Curado</legend>
+        <button type="button" onclick="ocultarPreguntas('zona1')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Piletas de curado.png" alt="Piletas de curado" />
+        <section class="Zona 1">
+          <div class = "container">
+            <label for="pregunta_0">*Fotos Piletas de curado.</label>
+            <input
+              class="file-name"
+              type="file"
+              id="pregunta_0"
+              name="pregunta_0"
+              accept="image/png, image/jpeg, image/gif, image/jpg"
+              onchange="validarArchivo(this)"
+              multiple
+            />
+          </div>
+          <div class="container">
+            <div class="Cumplimiento">
+              <label class = "Minimo"> Mínimo de seguridad</label>
+              <label for="pregunta_1"
+                >*Mínimo de seguridad - Parametros ergonomicos de las
+                piletas.</label
+              >
+              <input
+                type="radio"
+                id="pregunta_1_cumple"
+                name="pregunta_1"
+                value="Cumple"
+                required
+              /> 
+              <label for="pregunta_1_cumple">Cumple</label>
+              <input
+                type="radio"
+                id="pregunta_1_no_cumple"
+                name="pregunta_1"
+                value="No cumple"
+              />
+              <label for="pregunta_1_no_cumple">No cumple</label>
+          </div>
+        </div>
+        <div class="container">
+          <div class="calificaciones">
+            <label class = "Puntos"> Puntos de Valoración</label>
+            <label for="pregunta_2">*Valoración Piletas:</label>
+            <label class= "Apoyo "for="Clasificar">Clasificar</label>
+            <label class="Apoyo">Los cilindros están organizados por edades y el espacio es suficiente para el volumen de trabajo.</label>
+            <input type="radio" id="pregunta_2_cumple" name="pregunta_2" value="5" required />
+            <label for="pregunta_2_cumple">Cumple</label>
+            <input type="radio" id="pregunta_2_no_cumple" name="pregunta_2" value="1" />
+            <label for="pregunta_2_no_cumple">No Cumple</label>
+            <label class="Apoyo" for="Ordenar">Ordenar</label>
+            <label class="Apoyo">Las orillas de las piletas se encuentran libres, no hay herramientas ni cilindros almacenados allí.</label>
+            <input type="radio" id="pregunta_3_cumple" name="pregunta_3" value="5" required />
+            <label for="pregunta_3_cumple">Cumple</label>
+            <input type="radio" id="pregunta_3_no_cumple" name="pregunta_3" value="1" />
+            <label for="pregunta_3_no_cumple">No Cumple</label>
+            <label class="Apoyo"for="Limpiar">Limpiar</label>
+            <label class="Apoyo">Zona despejada que facilite el tránsito, se cuenta con un canal del desagüe adecuado evitando vertimientos.</label>
+            <input type="radio" id="pregunta_4_cumple" name="pregunta_4" value="5" required />
+            <label for="pregunta_4_cumple">Cumple</label>
+            <input type="radio" id="pregunta_4_no_cumple" name="pregunta_4" value="1" />
+            <label for="pregunta_4_no_cumple">No Cumple</label>
+            <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+            <label class="Apoyo">El piso está pintado de color azul, los bordes de las piletas están pintados con franjas amarillas y negras, se tienen marcadas las edades de los cilindros 3,7,14,28 y 56 días.</label>
+            <input type="radio" id="pregunta_5_cumple" name="pregunta_5" value="5" required />
+            <label for="pregunta_5_cumple">Cumple</label>
+            <input type="radio" id="pregunta_5_no_cumple" name="pregunta_5" value="1" />
+            <label for="pregunta_5_no_cumple">No Cumple</label>
+            <label class="Apoyo" for="Sostener">Sostener</label>
+            <label class="Apoyo">Las desmarcaciones, pintura no están desgastadas, se mantiene organizada y despejada la zona.</label>
+            <input type="radio" id="pregunta_6_cumple" name="pregunta_6" value="5" required />
+            <label for="pregunta_6_cumple">Cumple</label>
+            <input type="radio" id="pregunta_6_no_cumple" name="pregunta_6" value="1" />
+            <label for="pregunta_6_no_cumple">No Cumple</label>
+          </div>
+          </div>
+          <div class="container">
+            <label for="pregunta_7"
+              >*Observaciones zonas de piletas(Acciones a tomar):</label
+            >
+            <input class="Observaciones" type="text" id="pregunta_7" name="pregunta_7" maxlength="200" placeholder="Maximo 200 caracteres"/>
+          </div>
+          <div class="container">
+          <div class="Respuesta">
+            <label for="pregunta_8"
+              >*¿Las piletas cuentan con sistema de control de
+              temperaturas?</label
+            >
+            <input
+              type="radio"
+              id="pregunta_8_si"
+              name="pregunta_8"
+              value="Si"
+              required
+            />
+            Si
+            <input
+              type="radio"
+              id="pregunta_8_no"
+              name="pregunta_8"
+              value="No"
+            />
+            No
+
+          </div>
+          </div>
+        </section>
+      </fieldset>
+      <fieldset id="zona2">
+        <legend>Piletas de Curado - Control de temperaturas</legend>
+        <button type="button" onclick="ocultarPreguntas('zona2')">No tenemos el equipo de laboratorio</button>
+        <img
+          src="/static/Imagenes/Control de temperatura.png"
+          alt="Control de temperatura"
+        />
+        <div class="container">
+          <label for="pregunta_9"
+            >*Fotos del sistema de control de temperatura</label
+          >
+          <input class="file-name" type="file" id="pregunta_9" name="pregunta_9" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple />
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_11"
+            >*Mínimo de seguridad - Debe contar con tapas con interlock, tablero de control con el
+            respectivo safety switch. En su defecto, el sistema de conservación de temperatura solo debe
+            permitir el ingreso de la resistencia al agua sin que se genere
+            riesgo eléctrico con el cable conductor de energía dentro de la
+            pileta.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_11_cumple"
+            name="pregunta_11"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_11_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_11_no_cumple"
+            name="pregunta_11"
+            value="No cumple"
+          />
+          <label for="pregunta_11_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_12"
+            >*Valoración 5s Sistema de control de temperatura:</label
+          >
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Las piletas deben estar cubiertas garantizado una temperatura de 22 + 1 °C.</label>
+          <input type="radio" id="pregunta_12_cumple" name="pregunta_12" value="5" required />
+          <label for="pregunta_12_cumple">Cumple</label>
+          <input type="radio" id="pregunta_12_no_cumple" name="pregunta_12" value="1" />
+          <label for="pregunta_12_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Las tapas de las piletas se encuentran en su lugar.</label>
+          <input type="radio" id="pregunta_13_cumple" name="pregunta_13" value="5" required />
+          <label for="pregunta_13_cumple">Cumple</label>
+          <input type="radio" id="pregunta_13_no_cumple" name="pregunta_13" value="1" />
+          <label for="pregunta_13_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Las tapas se encuentran en buen estado fisico.</label>
+          <input type="radio" id="pregunta_14_cumple" name="pregunta_14" value="5" required />
+          <label for="pregunta_14_cumple">Cumple</label>
+          <input type="radio" id="pregunta_14_no_cumple" name="pregunta_14" value="1" />
+          <label for="pregunta_14_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Sistema eléctrico canalizado y demarcado.</label>
+          <input type="radio" id="pregunta_15_cumple" name="pregunta_15" value="5" required />
+          <label for="pregunta_15_cumple">Cumple</label>
+          <input type="radio" id="pregunta_15_no_cumple" name="pregunta_15" value="1" />
+          <label for="pregunta_15_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">El sistema se encuentre en funcionamiento.</label>
+          <input type="radio" id="pregunta_16_cumple" name="pregunta_16" value="5" required />
+          <label for="pregunta_16_cumple">Cumple</label>
+          <input type="radio" id="pregunta_16_no_cumple" name="pregunta_16" value="1" />
+          <label for="pregunta_16_no_cumple">No Cumple</label>
+        </div>
+        </div>
+        <div class="container">
+          <label for="pregunta_17"
+            >*Observaciones sistema de control de temperatura (Acciones a
+            tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_17" name="pregunta_17" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+
+        <!-- Include other questions related to Piletas de Curado - Control de temperaturas -->
+      </fieldset>
+      <fieldset id="zona3">
+        <legend>Sacavigas</legend>
+        <button type="button" onclick="ocultarPreguntas('zona3')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Sacavigas.png" alt="Sacavigas" />
+        <div class="container">
+          <label for="pregunta_18">*Fotos del Sacavigas</label>
+          <input class="file-name" type="file" id="pregunta_18" name="pregunta_18" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_19"
+            >*Mínimo de seguridad (NR) La piscina de curado para viguetas debe
+            contar con el equipo mecánico levanta vigas que evite la
+            manipulación manual al momento de ingresarlas y retirarlas del
+            sitio.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_19_cumple"
+            name="pregunta_19"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_19_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_19_no_cumple"
+            name="pregunta_19"
+            value="No cumple"
+          />
+          <label for="pregunta_19_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_20"
+            >*Mínimo de seguridad (R) Las poleas y el motor se encuentran con
+            guardas, la plancha y los ganchos de agarre se encuentran en buen
+            estado, se cuenta con final de carrera y botón de paro de
+            emergencia.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_20_cumple"
+            name="pregunta_20"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_20_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_20_no_cumple"
+            name="pregunta_20"
+            value="No cumple"
+          />
+          <label for="pregunta_20_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_21">*Valoración 5s Sacavigas:</label> 
+          <label class ="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">La zona se utiliza para viguetas únicamente.</label>
+          <input type="radio" id="pregunta_21_cumple" name="pregunta_21" value="5" required />
+          <label for="pregunta_21_cumple">Cumple</label>
+          <input type="radio" id="pregunta_21_no_cumple" name="pregunta_21" value="1" />
+          <label for="pregunta_21_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo"> Las orillas de las piletas se encuentran libres, no hay herramientas ni cilindros almacenados allí.</label>
+          <input type="radio" id="pregunta_22_cumple" name="pregunta_22" value="5" required />
+          <label for="pregunta_22_cumple">Cumple</label>
+          <input type="radio" id="pregunta_22_no_cumple" name="pregunta_22" value="1" />
+          <label for="pregunta_22_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Zona despejada que facilite el tránsito.</label>
+          <input type="radio" id="pregunta_23_cumple" name="pregunta_23" value="5" required />
+          <label for="pregunta_23_cumple">Cumple</label>
+          <input type="radio" id="pregunta_23_no_cumple" name="pregunta_23" value="1" />
+          <label for="pregunta_23_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">El marco del sistema es de color amarillo.</label>
+          <input type="radio" id="pregunta_24_cumple" name="pregunta_24" value="5" required />
+          <label for="pregunta_24_cumple">Cumple</label>
+          <input type="radio" id="pregunta_24_no_cumple" name="pregunta_24" value="1" />
+          <label for="pregunta_24_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">El sistema se encuentra en funcionamiento.</label>
+          <input type="radio" id="pregunta_25_cumple" name="pregunta_25" value="5" required />
+          <label for="pregunta_25_cumple">Cumple</label>
+          <input type="radio" id="pregunta_25_no_cumple" name="pregunta_25" value="1" />
+          <label for="pregunta_25_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_26"
+            >*Observaciones sacavigas (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_26" name="pregunta_26" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona4">
+        <legend>Mesón de muestra de concreto</legend>
+        <button type="button" onclick="ocultarPreguntas('zona4')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Muestras de concreto.png" alt="Muestras de concreto" />
+        <div class="container">
+          <label for="pregunta_27">*Fotos del mesón de muestras</label>
+          <input class="file-name" type="file" id="pregunta_27" name="pregunta_27" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_28"
+            >*Mínimo de seguridad - El mesón cumple con los parámetros
+            ergonómico.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_28_cumple"
+            name="pregunta_28"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_28_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_28_no_cumple"
+            name="pregunta_28"
+            value="No cumple"
+          />
+          <label for="pregunta_28_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_29"
+            >*Mínimo de seguridad - La iluminación debe ser adecuada, el mesón
+            debe estar techado y garantizando la ventilación.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_29_cumple"
+            name="pregunta_29"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_29_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_29_no_cumple"
+            name="pregunta_29"
+            value="No cumple"
+          />
+          <label for="pregunta_29_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_30">*Valoración 5s Mesón de muestras de concreto:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo"> Se tiene asignada una zona para almacenar los cofres y tapas.</label>
+          <input type="radio" id="pregunta_30_cumple" name="pregunta_30" value="5" required />
+          <label for="pregunta_30_cumple">Cumple</label>
+          <input type="radio" id="pregunta_30_no_cumple" name="pregunta_30" value="1" />
+          <label for="pregunta_30_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">El espacio de trabajo se encuentra despejado.</label>
+          <input type="radio" id="pregunta_31_cumple" name="pregunta_31" value="5" required />
+          <label for="pregunta_31_cumple">Cumple</label>
+          <input type="radio" id="pregunta_31_no_cumple" name="pregunta_31" value="1" />
+          <label for="pregunta_31_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">El mesón se encuentra libre de manchas de concreto o sustancias quimicas.</label>
+          <input type="radio" id="pregunta_32_cumple" name="pregunta_32" value="5" required />
+          <label for="pregunta_32_cumple">Cumple</label>
+          <input type="radio" id="pregunta_32_no_cumple" name="pregunta_32" value="1" />
+          <label for="pregunta_32_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Mesón pintado de color azul, con demarcaciones amarillas para separar muestras, etiquetas con la numeración.</label>
+          <input type="radio" id="pregunta_33_cumple" name="pregunta_33" value="5" required />
+          <label for="pregunta_33_cumple">Cumple</label>
+          <input type="radio" id="pregunta_33_no_cumple" name="pregunta_33" value="1" />
+          <label for="pregunta_33_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Las demarcaciones, pintura no están desgastadas, el estado de los cofres.</label>
+          <input type="radio" id="pregunta_34_cumple" name="pregunta_34" value="5" required />
+          <label for="pregunta_34_cumple">Cumple</label>
+          <input type="radio" id="pregunta_34_no_cumple" name="pregunta_34" value="1" />
+          <label for="pregunta_34_no_cumple">No Cumple</label>
+      </div>
+      </div>
+      
+        <div class="container">
+          <label for="pregunta_35"
+            >*Observaciones Mesón de muestras de concreto (Acciones a
+            tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_35" name="pregunta_35" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona5">
+        <legend>Mesón de muestra de concreto(Compresor)</legend>
+        <button type="button" onclick="ocultarPreguntas('zona5')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Compresor.jpg" alt="Compresor" />
+        <div class="container">
+          <label for="pregunta_36">*Fotos de la linea neumática</label>
+          <input class="file-name" type="file" id="pregunta_36" name="pregunta_36" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_37"
+            >*(R) La línea neumática para el desencofrado de cilindros, debe
+            contar con la señalización de 40 PSI.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_37_cumple"
+            name="pregunta_37"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_37_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_37_no_cumple"
+            name="pregunta_37"
+            value="No cumple"
+          />
+          <label for="pregunta_37_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_38"
+            >*(NR)El compresor para el uso del aire no debe estar en el
+            laboratorio debe estar afuera y bien insonorizado. El estándar de
+            decibeles dB debe ser inferior a 85dB</label
+          >
+          <input
+            type="radio"
+            id="pregunta_38_cumple"
+            name="pregunta_38"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_38_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_38_no_cumple"
+            name="pregunta_38"
+            value="No cumple"
+          />
+          <label for="pregunta_38_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_39">*Valoración 5s Compresor:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tiene una línea de aire para el desencofrado de cilindros.</label>
+          <input type="radio" id="pregunta_39_cumple" name="pregunta_39" value="5" required />
+          <label for="pregunta_39_cumple">Cumple</label>
+          <input type="radio" id="pregunta_39_no_cumple" name="pregunta_39" value="1" />
+          <label for="pregunta_39_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo"> El compresor se encuentra en una zona que no obstaculice el paso.</label>
+          <input type="radio" id="pregunta_40_cumple" name="pregunta_40" value="5" required />
+          <label for="pregunta_40_cumple">Cumple</label>
+          <input type="radio" id="pregunta_40_no_cumple" name="pregunta_40" value="1" />
+          <label for="pregunta_40_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo"> El ruido del compresor no excede los 85dB en el espacio designado.</label>
+          <input type="radio" id="pregunta_41_cumple" name="pregunta_41" value="5" required />
+          <label for="pregunta_41_cumple">Cumple</label>
+          <input type="radio" id="pregunta_41_no_cumple" name="pregunta_41" value="1" />
+          <label for="pregunta_41_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Etiqueta del compresor, demarcación en el suelo y guarda que mitigue el acceso y el ruido.</label>
+          <input type="radio" id="pregunta_42_cumple" name="pregunta_42" value="5" required />
+          <label for="pregunta_42_cumple">Cumple</label>
+          <input type="radio" id="pregunta_42_no_cumple" name="pregunta_42" value="1" />
+          <label for="pregunta_42_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">El compresor se encuentra en funcionamiento, demarcaciones en buen estado, sin desgaste de pintura ni etiquetas.</label>
+          <input type="radio" id="pregunta_43_cumple" name="pregunta_43" value="5" required />
+          <label for="pregunta_43_cumple">Cumple</label>
+          <input type="radio" id="pregunta_43_no_cumple" name="pregunta_43" value="1" />
+          <label for="pregunta_43_no_cumple">No Cumple</label>
+      </div>
+      </div>
+      
+        <div class="container">
+          <label for="pregunta_44"
+            >*Observaciones Compresor (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_44" name="pregunta_44" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona6">
+        <legend>Prensas para ensayos de compresión y de flexión</legend>
+        <button type="button" onclick="ocultarPreguntas('zona6')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/CompresiónyFlexion.png" alt="CompresiónyFlexion" />
+        <div class="container">
+          <label for="pregunta_45"
+            >*Fotos prensas de compresión y flexión</label
+          >
+          <input class="file-name" type="file" id="pregunta_45" name="pregunta_45" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_46"
+            >*(R) Para aquellas plantas que no tiene marco en C para el fallo de
+            vigas, deben contar con el aditamento abatible para eliminar la
+            probabilidad de caída de la viga.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_46_cumple"
+            name="pregunta_46"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_46_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_46_no_cumple"
+            name="pregunta_46"
+            value="No cumple"
+          />
+          <label for="pregunta_46_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_47"
+            >*(R) Los equipos para compresión deben contar con guardas en la
+            parte frontal y posterior para minimizar el riesgo de proyección de
+            material.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_47_cumple"
+            name="pregunta_47"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_47_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_47_no_cumple"
+            name="pregunta_47"
+            value="No cumple"
+          />
+          <label for="pregunta_47_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_48">*Valoración 5s Prensas de compresión y flexión:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tiene asignada una zona nivelada para ubicar las prensas.</label>
+          <input type="radio" id="pregunta_48_cumple" name="pregunta_48" value="5" required />
+          <label for="pregunta_48_cumple">Cumple</label>
+          <input type="radio" id="pregunta_48_no_cumple" name="pregunta_48" value="1" />
+          <label for="pregunta_48_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">El espacio de trabajo se encuentra despejado garantizando el acceso.</label>
+          <input type="radio" id="pregunta_49_cumple" name="pregunta_49" value="5" required />
+          <label for="pregunta_49_cumple">Cumple</label>
+          <input type="radio" id="pregunta_49_no_cumple" name="pregunta_49" value="1" />
+          <label for="pregunta_49_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Zona despejada sin exceso de elementos para fallar, sin escombros.</label>
+          <input type="radio" id="pregunta_50_cumple" name="pregunta_50" value="5" required />
+          <label for="pregunta_50_cumple">Cumple</label>
+          <input type="radio" id="pregunta_50_no_cumple" name="pregunta_50" value="1" />
+          <label for="pregunta_50_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo"> Demarcado con franja roja para delimitar el acceso, con etiquetas para identificar los equipos.</label>
+          <input type="radio" id="pregunta_51_cumple" name="pregunta_51" value="5" required />
+          <label for="pregunta_51_cumple">Cumple</label>
+          <input type="radio" id="pregunta_51_no_cumple" name="pregunta_51" value="1" />
+          <label for="pregunta_51_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo"> Equipos de buen estado.</label>
+          <input type="radio" id="pregunta_52_cumple" name="pregunta_52" value="5" required />
+          <label for="pregunta_52_cumple">Cumple</label>
+          <input type="radio" id="pregunta_52_no_cumple" name="pregunta_52" value="1" />
+          <label for="pregunta_52_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_53"
+            >*Observaciones prensas de compresión y flexión (Acciones a
+            tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_53" name="pregunta_53" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona7">
+        <legend>Elementos de trabajo en caliente</legend>
+        <button type="button" onclick="ocultarPreguntas('zona7')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/ElementosCaliente.png" alt="ElementosCaliente" />
+        <div class="container">
+          <label for="pregunta_54"
+            >*Fotos elementos de trabajo en caliente</label
+          >
+          <input class="file-name" type="file" id="pregunta_54" name="pregunta_54" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_55"
+            >*(R) En la zona de área caliente se debe: Contar con los EPP
+            (guantes de altas temperaturas, peto de carnaza) para la
+            manipulación de las bandejas calientes. Caja invertida para la
+            protección de la estufa (la distancia entre la estufa y la zona
+            superior 20 cm de la caja debe ser como mínimo 20 cm). Anclaje del
+            horno para evitar su caída</label
+          >
+          <input
+            type="radio"
+            id="pregunta_55_cumple"
+            name="pregunta_55"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_55_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_55_no_cumple"
+            name="pregunta_55"
+            value="No cumple"
+          />
+          <label for="pregunta_55_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_56">*Valoración 5s Elementos de trabajo en caliente:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tiene asignada una zona para trabajo en caliente.</label>
+          <input type="radio" id="pregunta_56_cumple" name="pregunta_56" value="5" required />
+          <label for="pregunta_56_cumple">Cumple</label>
+          <input type="radio" id="pregunta_56_no_cumple" name="pregunta_56" value="1" />
+          <label for="pregunta_56_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">El espacio de trabajo se encuentra despejado garatizando el acceso.</label>
+          <input type="radio" id="pregunta_57_cumple" name="pregunta_57" value="5" required />
+          <label for="pregunta_57_cumple">Cumple</label>
+          <input type="radio" id="pregunta_57_no_cumple" name="pregunta_57" value="1" />
+          <label for="pregunta_57_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Zona despejada sin exceso de elementos.</label>
+          <input type="radio" id="pregunta_58_cumple" name="pregunta_58" value="5" required />
+          <label for="pregunta_58_cumple">Cumple</label>
+          <input type="radio" id="pregunta_58_no_cumple" name="pregunta_58" value="1" />
+          <label for="pregunta_58_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Demarcado con franja roja para delimitar el acceso, con etiquetas para identificar los riesgos de quemaduras.</label>
+          <input type="radio" id="pregunta_59_cumple" name="pregunta_59" value="5" required />
+          <label for="pregunta_59_cumple">Cumple</label>
+          <input type="radio" id="pregunta_59_no_cumple" name="pregunta_59" value="1" />
+          <label for="pregunta_59_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Equipos en buen estado, con calibración vigente.</label>
+          <input type="radio" id="pregunta_60_cumple" name="pregunta_60" value="5" required />
+          <label for="pregunta_60_cumple">Cumple</label>
+          <input type="radio" id="pregunta_60_no_cumple" name="pregunta_60" value="1" />
+          <label for="pregunta_60_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_61"
+            >*Observaciones elementos de trabajo en caliente (Acciones a
+            tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_61" name="pregunta_61" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona8">
+        <legend>Aditivos , Contramuestras y MMPP</legend>
+        <button type="button" onclick="ocultarPreguntas('zona8')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Aditivos.png" alt="Aditivos" />
+        <div class="container">
+          <label for="pregunta_62"
+            >*Fotos aditivos, contramuestras y MMPP</label
+          >
+          <input class="file-name" class="file-name" type="file" id="pregunta_62" name="pregunta_62" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_63"
+            >*(NR) Las contramuestras de aditivos deben almacenarse en un
+            recipiente que dificulte la caída de los frascos o el derrame de los
+            aditivos (perforación de las tapas para el plastificantes)</label
+          >
+          <input
+            type="radio"
+            id="pregunta_63_cumple"
+            name="pregunta_63"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_63_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_63_no_cumple"
+            name="pregunta_63"
+            value="No cumple"
+          />
+          <label for="pregunta_63_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_64">*Valoración 5s Aditivos, contramuestras y MMPP:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tiene asignada una zona para las contramuestras y MMPP utilizadas en laboratorio, sin exceso de inventario.</label>
+          <input type="radio" id="pregunta_64_cumple" name="pregunta_64" value="5" required />
+          <label for="pregunta_64_cumple">Cumple</label>
+          <input type="radio" id="pregunta_64_no_cumple" name="pregunta_64" value="1" />
+          <label for="pregunta_64_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Las contramuestras y MMPP se encuentran almacenadas adecuadamente evitando contaminaciones.</label>
+          <input type="radio" id="pregunta_65_cumple" name="pregunta_65" value="5" required />
+          <label for="pregunta_65_cumple">Cumple</label>
+          <input type="radio" id="pregunta_65_no_cumple" name="pregunta_65" value="1" />
+          <label for="pregunta_65_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Zona despejada y sin regueros.</label>
+          <input type="radio" id="pregunta_66_cumple" name="pregunta_66" value="5" required />
+          <label for="pregunta_66_cumple">Cumple</label>
+          <input type="radio" id="pregunta_66_no_cumple" name="pregunta_66" value="1" />
+          <label for="pregunta_66_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Zona demarcada, con su respectiva identificación, ficha de seguridad y rotulo, etiquetas para MMPP.</label>
+          <input type="radio" id="pregunta_67_cumple" name="pregunta_67" value="5" required />
+          <label for="pregunta_67_cumple">Cumple</label>
+          <input type="radio" id="pregunta_67_no_cumple" name="pregunta_67" value="1" />
+          <label for="pregunta_67_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Frascos y contenedores en buen estado.</label>
+          <input type="radio" id="pregunta_68_cumple" name="pregunta_68" value="5" required />
+          <label for="pregunta_68_cumple">Cumple</label>
+          <input type="radio" id="pregunta_68_no_cumple" name="pregunta_68" value="1" />
+          <label for="pregunta_68_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_69"
+            >*Observaciones Aditivos, contramuestras y MMPP (Acciones a
+            tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_69" name="pregunta_69" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona9">
+        <legend>Espacio para ensayos de concreto y agregados</legend>
+        <button type="button" onclick="ocultarPreguntas('zona9')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/EspacioConcretos.png" alt="EspacioConcretos" />
+        <div class="container">
+          <label for="pregunta_70"
+            >*Fotos del espacio para ensayos de concreto y agregados</label
+          >
+          <input class="file-name" type="file" id="pregunta_70" name="pregunta_70"onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_71"
+            >*(R) Los mesones deben tener el ancho y la altura establecida por
+            ergonomía.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_71_cumple"
+            name="pregunta_71"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_71_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_71_no_cumple"
+            name="pregunta_71"
+            value="No cumple"
+          />
+          <label for="pregunta_71_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_72"
+            >*(R) La iluminación debe ser adecuada, el mesón debe estar techado
+            y garantizando la ventilación</label
+          >
+          <input
+            type="radio"
+            id="pregunta_72_cumple"
+            name="pregunta_72"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_72_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_72_no_cumple"
+            name="pregunta_72"
+            value="No cumple"
+          />
+          <label for="pregunta_72_no_cumple">No Cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_73">*Valoración 5s espacio para ensayos de concreto y agregados:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tienen todos los equipos necesarios para realizar ensayos, sin exceso de inventario.</label>
+          <input type="radio" id="pregunta_73_cumple" name="pregunta_73" value="5" required />
+          <label for="pregunta_73_cumple">Cumple</label>
+          <input type="radio" id="pregunta_73_no_cumple" name="pregunta_73" value="1" />
+          <label for="pregunta_73_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Se asigna una zona para cada elemento.</label>
+          <input type="radio" id="pregunta_74_cumple" name="pregunta_74" value="5" required />
+          <label for="pregunta_74_cumple">Cumple</label>
+          <input type="radio" id="pregunta_74_no_cumple" name="pregunta_74" value="1" />
+          <label for="pregunta_74_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Zona despejada que facilite el acceso.</label>
+          <input type="radio" id="pregunta_75_cumple" name="pregunta_75" value="5" required />
+          <label for="pregunta_75_cumple">Cumple</label>
+          <input type="radio" id="pregunta_75_no_cumple" name="pregunta_75" value="1" />
+          <label for="pregunta_75_no_cumple">No Cumple</label>
+          <label class="Apoyo"for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Mesa de color azul, con franja amarilla para demarcar los equipos, cada equipo cuenta con su demarcación.</label>
+          <input type="radio" id="pregunta_76_cumple" name="pregunta_76" value="5" required />
+          <label for="pregunta_76_cumple">Cumple</label>
+          <input type="radio" id="pregunta_76_no_cumple" name="pregunta_76" value="1" />
+          <label for="pregunta_76_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Elementos en buen estado y sin desgaste, equipos con calibración vigente.</label>
+          <input type="radio" id="pregunta_77_cumple" name="pregunta_77" value="5" required />
+          <label for="pregunta_77_cumple">Cumple</label>
+          <input type="radio" id="pregunta_77_no_cumple" name="pregunta_77" value="1" />
+          <label for="pregunta_77_no_cumple">No Cumple</label>
+      </div>      
+      </div>
+        <div class="container">
+          <label for="pregunta_78"
+            >*Observaciones espacio para muestras de concreto y agregados
+            (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_78" name="pregunta_78" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona10">
+        <legend>Accesos a Lineas de fuego</legend>
+        <button type="button" onclick="ocultarPreguntas('zona10')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/AccesosLineaFuego.png" alt="AccesosLineaFuego" />
+        <div class="container">
+          <label for="pregunta_79"
+            >*Fotos de accesos a las líneas de fuego</label
+          >
+          <input class="file-name" type="file" id="pregunta_79" name="pregunta_79" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_80"
+            >*(R)El personal del laboratorio debe contar con los siguientes
+            accesos y/o rutas seguras para las siguientes actividades: Toma de
+            la muestra de concreto en estado fresco - Ruta desde la pasarela
+            hasta el laboratorio - Ruta desde el laboratorio al sitio de
+            disposición de escombros.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_80_cumple"
+            name="pregunta_80"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_80_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_80_no_cumple"
+            name="pregunta_80"
+            value="No cumple"
+          />
+          <label for="pregunta_80_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label for="pregunta_81"
+            >*Cuentan con banderín estándar para acceder al patio de
+            agregado</label
+          >
+          <input
+            type="radio"
+            id="pregunta_81_cumple"
+            name="pregunta_81"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_81_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_81_no_cumple"
+            name="pregunta_81"
+            value="No cumple"
+          />
+          <label for="pregunta_81_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_82"
+            >*(NR)El ancho de los pasillos de circulación hacia el laboratorio
+            deben permitir el tránsito normal de la carretilla + 50 cm</label
+          >
+          <input
+            type="radio"
+            id="pregunta_82_cumple"
+            name="pregunta_82"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_82_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_82_no_cumple"
+            name="pregunta_82"
+            value="No cumple"
+          />
+          <label for="pregunta_82_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class = "container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_83">*Valoración 5s Accesos a las líneas de fuego:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tienen todos los equipos necesarios para salida a líneas de fuego (Banderín, carretillas, elementos para toma de muestras de agregados, radio comunicador)</label>
+          <input type="radio" id="pregunta_83_cumple" name="pregunta_83" value="5" required />
+          <label for="pregunta_83_cumple">Cumple</label>
+          <input type="radio" id="pregunta_83_no_cumple" name="pregunta_83" value="1" />
+          <label for="pregunta_83_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Se asigna una zona para cada elemento.</label>
+          <input type="radio" id="pregunta_84_cumple" name="pregunta_84" value="5" required />
+          <label for="pregunta_84_cumple">Cumple</label>
+          <input type="radio" id="pregunta_84_no_cumple" name="pregunta_84" value="1" />
+          <label for="pregunta_84_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Zona despejada que facilite el acceso.</label>
+          <input type="radio" id="pregunta_85_cumple" name="pregunta_85" value="5" required />
+          <label for="pregunta_85_cumple">Cumple</label>
+          <input type="radio" id="pregunta_85_no_cumple" name="pregunta_85" value="1" />
+          <label for="pregunta_85_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Puntos de salida demarcados, arcos rojos con bloqueo y señalización de EPP necesarios.</label>
+          <input type="radio" id="pregunta_86_cumple" name="pregunta_86" value="5" required />
+          <label for="pregunta_86_cumple">Cumple</label>
+          <input type="radio" id="pregunta_86_no_cumple" name="pregunta_86" value="1" />
+          <label for="pregunta_86_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo"> Elementos en buen estado y sin desgaste de pintura.</label>
+          <input type="radio" id="pregunta_87_cumple" name="pregunta_87" value="5" required />
+          <label for="pregunta_87_cumple">Cumple</label>
+          <input type="radio" id="pregunta_87_no_cumple" name="pregunta_87" value="1" />
+          <label for="pregunta_87_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_88"
+            >*Observaciones accesos a las líneas de fuego (Acciones a
+            tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_88" name="pregunta_88" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona11">
+        <legend>Tablero de Sombras</legend>
+        <button type="button" onclick="ocultarPreguntas('zona11')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/TablerodeZombras.png" alt="Tablero de Zombras" />
+        <div class="container">
+          <label for="pregunta_89">*Fotos de los tableros de sombra</label>
+          <input class="file-name" type="file" id="pregunta_89" name="pregunta_89" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_90">*Valoración 5s Tableros de sombras:</label>
+          <label class= "Apoyo" for="pregunta_90_Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tiene designado un espacio para las herramientas de muestreo, elementos de aseo, guantes entre otros.</label>
+          <input type="radio" id="pregunta_90_cumple" name="pregunta_90" value="5" required />
+          <label for="pregunta_90_cumple">Cumple</label>
+          <input type="radio" id="pregunta_90_no_cumple" name="pregunta_90" value="1" />
+          <label for="pregunta_90_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">El tablero tiene todos los elementos asignados y es de fácil acceso según su necesidad.</label>
+          <input type="radio" id="pregunta_91_cumple" name="pregunta_91" value="5" required />
+          <label for="pregunta_91_cumple">Cumple</label>
+          <input type="radio" id="pregunta_91_no_cumple" name="pregunta_91" value="1" />
+          <label for="pregunta_91_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Se mantiene limpio libre de manchas de concreto.</label>
+          <input type="radio" id="pregunta_92_cumple" name="pregunta_92" value="5" required />
+          <label for="pregunta_92_cumple">Cumple</label>
+          <input type="radio" id="pregunta_92_no_cumple" name="pregunta_92" value="1" />
+          <label for="pregunta_92_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Fondo amarillo con sombras de color negro, etiqueta para cada elemento.</label>
+          <input type="radio" id="pregunta_93_cumple" name="pregunta_93" value="5" required />
+          <label for="pregunta_93_cumple">Cumple</label>
+          <input type="radio" id="pregunta_93_no_cumple" name="pregunta_93" value="1" />
+          <label for="pregunta_93_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo"> Elementos en buen estado, pintura sin desgaste.</label>
+          <input type="radio" id="pregunta_94_cumple" name="pregunta_94" value="5" required />
+          <label for="pregunta_94_cumple">Cumple</label>
+          <input type="radio" id="pregunta_94_no_cumple" name="pregunta_94" value="1" />
+          <label for="pregunta_94_no_cumple">No Cumple</label>
+      </div>
+      </div>
+      
+        <div class = "container">
+          <label for="pregunta_95"
+            >*Observaciones tableros de sombras (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_95" name="pregunta_95" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona12">
+        <legend>Zona para asentamientos</legend>
+        <button type="button" onclick="ocultarPreguntas('zona12')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Asentamientos.png" alt="Asentamientos" />
+        <div class="container">
+          <label for="pregunta_96">*Fotos de la zona para asentamientos</label>
+          <input class="file-name" type="file" id="pregunta_96" name="pregunta_96" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_97"
+            >*(NR) La zona de toma de asentamiento debe permitir el fácil lavado
+            y retiro de material</label
+          >
+          <input
+            type="radio"
+            id="pregunta_97_cumple"
+            name="pregunta_97"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_97_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_97_no_cumple"
+            name="pregunta_97"
+            value="No cumple"
+          />
+          <label for="pregunta_97_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_98">*Valoración 5s Zona de asentamientos:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tiene designado un espacio para la toma de asentamientos, con su respectivo cono y varilla.</label>
+          <input type="radio" id="pregunta_98_cumple" name="pregunta_98" value="5" required />
+          <label for="pregunta_98_cumple">Cumple</label>
+          <input type="radio" id="pregunta_98_no_cumple" name="pregunta_98" value="1" />
+          <label for="pregunta_98_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">El espacio se encuentra despejado.</label>
+          <input type="radio" id="pregunta_99_cumple" name="pregunta_99" value="5" required />
+          <label for="pregunta_99_cumple">Cumple</label>
+          <input type="radio" id="pregunta_99_no_cumple" name="pregunta_99" value="1" />
+          <label for="pregunta_99_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Sin concreto pegado a la placa ni al cono.</label>
+          <input type="radio" id="pregunta_100_cumple" name="pregunta_100" value="5" required />
+          <label for="pregunta_100_cumple">Cumple</label>
+          <input type="radio" id="pregunta_100_no_cumple" name="pregunta_100" value="1" />
+          <label for="pregunta_100_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Placa pintada de color azul, con borde de color amarillo.</label>
+          <input type="radio" id="pregunta_101_cumple" name="pregunta_101" value="5" required />
+          <label for="pregunta_101_cumple">Cumple</label>
+          <input type="radio" id="pregunta_101_no_cumple" name="pregunta_101" value="1" />
+          <label for="pregunta_101_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Elementos en buen estado pintura sin desgaste.</label>
+          <input type="radio" id="pregunta_102_cumple" name="pregunta_102" value="5" required />
+          <label for="pregunta_102_cumple">Cumple</label>
+          <input type="radio" id="pregunta_102_no_cumple" name="pregunta_102" value="1" />
+          <label for="pregunta_102_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_103">*Observaciones zona de asentamientos:</label>
+          <input class="Observaciones" type="text" id="pregunta_103" name="pregunta_103" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona13">
+        <legend>Elementos de transporte</legend>
+        <button type="button" onclick="ocultarPreguntas('zona13')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Transporte.png" alt="Transporte" />
+        <div class="container">
+          <label for="pregunta_104">*Fotos de los elementos de transporte</label>
+          <input class="file-name" type="file" id="pregunta_104" name="pregunta_104" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_105"
+            >*(NR) El carro para transporte de material cumple con los
+            parámetros ergonómicos y es el idóneo para las condiciones de la
+            planta. Adicionalmente debe tener la marca para que la capacidad
+            máxima sea de 25 kg.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_105_cumple"
+            name="pregunta_105"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_105_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_105_no_cumple"
+            name="pregunta_105"
+            value="No cumple"
+          />
+          <label for="pregunta_105_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_106">*Valoración 5s Elementos de transporte:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo"> Se cuentan con carretillas suficientes y un carrito para transporte de muestras de concreto en estado endurecido y viguetas.</label>
+          <input type="radio" id="pregunta_106_cumple" name="pregunta_106" value="5" required />
+          <label for="pregunta_106_cumple">Cumple</label>
+          <input type="radio" id="pregunta_106_no_cumple" name="pregunta_106" value="1" />
+          <label for="pregunta_106_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Se tiene una zona designada para el carrito de transporte de muestras y carretillas.</label>
+          <input type="radio" id="pregunta_107_cumple" name="pregunta_107" value="5" required />
+          <label for="pregunta_107_cumple">Cumple</label>
+          <input type="radio" id="pregunta_107_no_cumple" name="pregunta_107" value="1" />
+          <label for="pregunta_107_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Los elementos no obstaculizan el tránsito y se encuentran sin residuos de concreto.</label>
+          <input type="radio" id="pregunta_108_cumple" name="pregunta_108" value="5" required />
+          <label for="pregunta_108_cumple">Cumple</label>
+          <input type="radio" id="pregunta_108_no_cumple" name="pregunta_108" value="1" />
+          <label for="pregunta_108_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">La carretilla debe tener tablero de sombras y debe estar demarcado el límite de su capacidad. El carro de muestras debe tener zona asignada y demarcada.</label>
+          <input type="radio" id="pregunta_109_cumple" name="pregunta_109" value="5" required />
+          <label for="pregunta_109_cumple">Cumple</label>
+          <input type="radio" id="pregunta_109_no_cumple" name="pregunta_109" value="1" />
+          <label for="pregunta_109_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Elementos en buen estado de pintura sin desgaste.</label>
+          <input type="radio" id="pregunta_110_cumple" name="pregunta_110" value="5" required />
+          <label for="pregunta_110_cumple">Cumple</label>
+          <input type="radio" id="pregunta_110_no_cumple" name="pregunta_110" value="1" />
+          <label for="pregunta_110_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_111"
+            >*Observaciones Elementos de Transporte (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_111" name="pregunta_111" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona14">
+        <legend>Lavaojos, extintor y kit de analisis de estructuras</legend>
+        <button type="button" onclick="ocultarPreguntas('zona14')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Lavaojos.png" alt="Lavaojos" />
+        <div class="container">
+          <label for="pregunta_112"
+            >*Fotos Lavaojos, extintor y kit de análisis de estructuras</label
+          >
+          <input class="file-name" type="file" id="pregunta_112" name="pregunta_112" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_113"
+            >*(R)El laboratorio debe contar con lavaojos portátil.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_113_cumple"
+            name="pregunta_113"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_113_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_113_no_cumple"
+            name="pregunta_113"
+            value="No cumple"
+          />
+          <label for="pregunta_113_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label for="pregunta_114"
+            >*(NR) Se debe contar con un extintor amarillo multipropósito de
+            20Lb.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_114_cumple"
+            name="pregunta_114"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_114_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_114_no_cumple"
+            name="pregunta_114"
+            value="No cumple"
+          />
+          <label for="pregunta_114_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label for="pregunta_115"
+            >*(NR) Se debe contar con kit de análisis estructural por Cluster.</label
+          >
+          <input
+            type="radio"
+            id="pregunta_115_cumple"
+            name="pregunta_115"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_115_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_115_no_cumple"
+            name="pregunta_115"
+            value="No cumple"
+          />
+          <label for="pregunta_115_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_116">*Valoración 5s Lavaojos, extintor y kit de análisis estructural:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">1 kit Lavaojos sin expiración, 1 extintor con certificación vigente.</label>
+          <input type="radio" id="pregunta_116_cumple" name="pregunta_116" value="5" required />
+          <label for="pregunta_116_cumple">Cumple</label>
+          <input type="radio" id="pregunta_116_no_cumple" name="pregunta_116" value="1" />
+          <label for="pregunta_116_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Se tiene una zona designada para los elementos, deben ser de fácil acceso.</label>
+          <input type="radio" id="pregunta_117_cumple" name="pregunta_117" value="5" required />
+          <label for="pregunta_117_cumple">Cumple</label>
+          <input type="radio" id="pregunta_117_no_cumple" name="pregunta_117" value="1" />
+          <label for="pregunta_117_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Los elementos no obstaculizan el tránsito y se encuentran en buen estado.</label>
+          <input type="radio" id="pregunta_118_cumple" name="pregunta_118" value="5" required />
+          <label for="pregunta_118_cumple">Cumple</label>
+          <input type="radio" id="pregunta_118_no_cumple" name="pregunta_118" value="1" />
+          <label for="pregunta_118_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Demarcación de la zona color amarillo etiquetas para identificar, checklist del kit de análisis estructural.</label>
+          <input type="radio" id="pregunta_119_cumple" name="pregunta_119" value="5" required />
+          <label for="pregunta_119_cumple">Cumple</label>
+          <input type="radio" id="pregunta_119_no_cumple" name="pregunta_119" value="1" />
+          <label for="pregunta_119_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Elementos de buen estado pintura sin desgaste.</label>
+          <input type="radio" id="pregunta_120_cumple" name="pregunta_120" value="5" required />
+          <label for="pregunta_120_cumple">Cumple</label>
+          <input type="radio" id="pregunta_120_no_cumple" name="pregunta_120" value="1" />
+          <label for="pregunta_120_no_cumple">No Cumple</label>
+      </div>
+      </div>
+      
+        <div class="container">
+          <label for="pregunta_121"
+            >*Observaciones Lavaojos, extintor y kit de análisis estructural
+            (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_121" name="pregunta_121" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona15">
+        <legend>Documentación Fisica y digital</legend>
+        <button type="button" onclick="ocultarPreguntas('zona15')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Fisica.png" alt="Fisica" />
+        <div class="container">
+          <label for="pregunta_122">*Fotos de la documentación</label>
+          <input class="file-name" type="file" id="pregunta_122" name="pregunta_122" onchange="validarArchivo(this)"accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_124">*Valoración 5s Documentación física y digital:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tienen carpetas designadas para los formatos de uso frecuente en el laboratorio, la documentación mayor de 12 meses se envia a CRI.</label>
+          <input type="radio" id="pregunta_124_cumple" name="pregunta_124" value="5" required />
+          <label for="pregunta_124_cumple">Cumple</label>
+          <input type="radio" id="pregunta_124_no_cumple" name="pregunta_124" value="1" />
+          <label for="pregunta_124_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Se tiene un archivador en el laboratorio.</label>
+          <input type="radio" id="pregunta_125_cumple" name="pregunta_125" value="5" required />
+          <label for="pregunta_125_cumple">Cumple</label>
+          <input type="radio" id="pregunta_125_no_cumple" name="pregunta_125" value="1" />
+          <label for="pregunta_125_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">El archivador se encuentra en buenas condiciones.</label>
+          <input type="radio" id="pregunta_126_cumple" name="pregunta_126" value="5" required />
+          <label for="pregunta_126_cumple">Cumple</label>
+          <input type="radio" id="pregunta_126_no_cumple" name="pregunta_126" value="1" />
+          <label for="pregunta_126_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Demarcación de las carpetas y listado, documentación digitalizada con acceso a la nube, QR acceder a SW y fichas de seguridad.</label>
+          <input type="radio" id="pregunta_127_cumple" name="pregunta_127" value="5" required />
+          <label for="pregunta_127_cumple">Cumple</label>
+          <input type="radio" id="pregunta_127_no_cumple" name="pregunta_127" value="1" />
+          <label for="pregunta_127_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Carpetas sin daños fisicos, backup de la documentación.</label>
+          <input type="radio" id="pregunta_128_cumple" name="pregunta_128" value="5" required />
+          <label for="pregunta_128_cumple">Cumple</label>
+          <input type="radio" id="pregunta_128_no_cumple" name="pregunta_128" value="1" />
+          <label for="pregunta_128_no_cumple">No Cumple</label>
+      </div>
+      </div>
+        <div class="container">
+          <label for="pregunta_129"
+            >*Observaciones documentación física y digital (Acciones a
+            tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_129" name="pregunta_129" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id="zona16">
+        <legend>Oficina</legend>
+        <button type="button" onclick="ocultarPreguntas('zona16')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Oficina.png" alt="Oficina" />
+        <div class="container">
+          <label for="pregunta_130">*Fotos oficina</label>
+          <input class="file-name" type="file" id="pregunta_130" name="pregunta_130" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="Cumplimiento">
+          <label class = "Minimo"> Mínimo de seguridad</label>
+          <label for="pregunta_131"
+            >*(NR) El área de la oficina del laboratorio debe estar separada del
+            área de muestreo, adicionalmente debe contar con un escritorio y una
+            silla que cumplan con parámetros ergonómico</label
+          >
+          <input
+            type="radio"
+            id="pregunta_131_cumple"
+            name="pregunta_131"
+            value="Cumple"
+            required
+          />
+          <label for="pregunta_131_cumple">Cumple</label>
+          <input
+            type="radio"
+            id="pregunta_131_no_cumple"
+            name="pregunta_131"
+            value="No cumple"
+          />
+          <label for="pregunta_131_no_cumple">No cumple</label>
+        </div>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_132">*Valoración 5s Oficina:</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tienen designado un sitio para las actividades administrativas, este debe contar con los elementos básicos de oficina de acuerdo al HeadCount, sin exceso de inventario.</label>
+          <input type="radio" id="pregunta_132_cumple" name="pregunta_132" value="5" required />
+          <label for="pregunta_132_cumple">Cumple</label>
+          <input type="radio" id="pregunta_132_no_cumple" name="pregunta_132" value="1" />
+          <label for="pregunta_132_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Los elementos de oficina se encuentran en el escritorio y este tiene espacio suficiente para trabajar.</label>
+          <input type="radio" id="pregunta_133_cumple" name="pregunta_133" value="5" required />
+          <label for="pregunta_133_cumple">Cumple</label>
+          <input type="radio" id="pregunta_133_no_cumple" name="pregunta_133" value="1" />
+          <label for="pregunta_133_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">El archivador se encuentra en buenas condiciones.</label>
+          <input type="radio" id="pregunta_134_cumple" name="pregunta_134" value="5" required />
+          <label for="pregunta_134_cumple">Cumple</label>
+          <input type="radio" id="pregunta_134_no_cumple" name="pregunta_134" value="1" />
+          <label for="pregunta_134_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">Demarcación de los elementos y etiquetas, debe existir una caneca para los residuos de papelería.</label>
+          <input type="radio" id="pregunta_135_cumple" name="pregunta_135" value="5" required />
+          <label for="pregunta_135_cumple">Cumple</label>
+          <input type="radio" id="pregunta_135_no_cumple" name="pregunta_135" value="1" />
+          <label for="pregunta_135_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo"> Elementos en buen estado se conservan condiciones estándar.</label>
+          <input type="radio" id="pregunta_136_cumple" name="pregunta_136" value="5" required />
+          <label for="pregunta_136_cumple">Cumple</label>
+          <input type="radio" id="pregunta_136_no_cumple" name="pregunta_136" value="1" />
+          <label for="pregunta_136_no_cumple">No Cumple</label>
+      </div>
+      </div>
+      
+        <div class="container">
+          <label for="pregunta_137"
+            >*Observaciones oficina (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_137" name="pregunta_137" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <fieldset id=zona17>
+        <legend>Elementos adicionales</legend>
+        <button type="button" onclick="ocultarPreguntas('zona17')">No tenemos el equipo de laboratorio</button>
+        <img src="/static/Imagenes/Adicionales.png" alt="Adicionales" />
+        <div class="container">
+          <label for="pregunta_138">*Fotos elementos adicionales</label>
+          <input class="file-name" type="file" id="pregunta_138" name="pregunta_138" onchange="validarArchivo(this)" accept="image/png, image/jpeg, image/gif, image/jpg" multiple/>
+        </div>
+        <div class="container">
+        <div class="calificaciones">
+          <label class = "Puntos"> Puntos de Valoración</label>
+          <label for="pregunta_139">*Valoración 5s Elementos adicionales</label>
+          <label class="Apoyo" for="Clasificar">Clasificar</label>
+          <label class="Apoyo">Se tienen los elementos.</label>
+          <input type="radio" id="pregunta_139_cumple" name="pregunta_139" value="5" required />
+          <label for="pregunta_139_cumple">Cumple</label>
+          <input type="radio" id="pregunta_139_no_cumple" name="pregunta_139" value="1" />
+          <label for="pregunta_139_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Ordenar">Ordenar</label>
+          <label class="Apoyo">Se tiene designada una zona para los elementos mencionados.</label>
+          <input type="radio" id="pregunta_140_cumple" name="pregunta_140" value="5" required />
+          <label for="pregunta_140_cumple">Cumple</label>
+          <input type="radio" id="pregunta_140_no_cumple" name="pregunta_140" value="1" />
+          <label for="pregunta_140_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Limpiar">Limpiar</label>
+          <label class="Apoyo">Se mantiene limpio y sin manchas de ningún tipo.</label>
+          <input type="radio" id="pregunta_141_cumple" name="pregunta_141" value="5" required />
+          <label for="pregunta_141_cumple">Cumple</label>
+          <input type="radio" id="pregunta_141_no_cumple" name="pregunta_141" value="1" />
+          <label for="pregunta_141_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Estandarizar">Estandarizar</label>
+          <label class="Apoyo">2 canecas (1 negra 1 verde y 1 blanca) de acuerdo a la norma de clasificación de residuos, tableros del responsable del área 5s y All safe, actualizados.</label>
+          <input type="radio" id="pregunta_142_cumple" name="pregunta_142" value="5" required />
+          <label for="pregunta_142_cumple">Cumple</label>
+          <input type="radio" id="pregunta_142_no_cumple" name="pregunta_142" value="1" />
+          <label for="pregunta_142_no_cumple">No Cumple</label>
+          <label class="Apoyo" for="Sostener">Sostener</label>
+          <label class="Apoyo">Elementos en buen estado, pintura sin desgaste.</label>
+          <input type="radio" id="pregunta_143_cumple" name="pregunta_143" value="5" required />
+          <label for="pregunta_143_cumple">Cumple</label>
+          <input type="radio" id="pregunta_143_no_cumple" name="pregunta_143" value="1" />
+          <label for="pregunta_143_no_cumple">No Cumple</label>
+      </div>
+      </div>
+      
+        <div class="container">
+          <label for="pregunta_144"
+            >*Observaciones oficina (Acciones a tomar):</label
+          >
+          <input class="Observaciones" type="text" id="pregunta_144" name="pregunta_144" maxlength="200" placeholder="Maximo 200 caracteres"/>
+        </div>
+      </fieldset>
+      <!-- Continue adding fieldsets for other sections with respective questions -->
+
+        <input type="submit" value="Enviar Formulario" id="submitBtn" />    
+    </form>
+
+    <script>
+      function ocultarPreguntas(fieldsetId) {
+    // Ocultar preguntas dentro del fieldset
+// Ocultar preguntas dentro del fieldset
+      var preguntas = document.querySelectorAll('#' + fieldsetId + ' input, #' + fieldsetId + ' select, #' + fieldsetId + ' textarea');
+        preguntas.forEach(function (pregunta) {
+          pregunta.classList.add('hidden');
+          pregunta.removeAttribute('required');
+        });
+
+        // Ocultar el fieldset completo
+        var fieldset = document.getElementById(fieldsetId);
+        fieldset.classList.add('hidden');
+
+        // Mostrar el botón "Sí tenemos el equipo de laboratorio"
+        var botonSi = document.getElementById('botonSi');
+        botonSi.classList.remove('hidden');
+      }
+
+      // Función para mostrar preguntas y hacerlas obligatorias
+      function mostrarPreguntas(fieldsetId) {
+        // Mostrar preguntas dentro del fieldset
+        var preguntas = document.querySelectorAll('#' + fieldsetId + ' input, #' + fieldsetId + ' select, #' + fieldsetId + ' textarea');
+        preguntas.forEach(function (pregunta) {
+          pregunta.classList.remove('hidden');
+          pregunta.setAttribute('required', 'required');
+        });
+
+        // Mostrar el fieldset completo
+        var fieldset = document.getElementById(fieldsetId);
+        fieldset.classList.remove('hidden');
+
+        // Ocultar el botón "Sí tenemos el equipo de laboratorio"
+        var botonSi = document.getElementById('botonSi');
+        botonSi.classList.add('hidden');
+      }
+
+      function mostrarEquipoLaboratorio() {
+        // Mostrar preguntas y la imagen de la Zona 1
+        mostrarPreguntas('zona1');
+      }
+      function validarArchivo(input) {
+        var archivo = input.files[0];
+
+        if(archivo){
+          var limitePeso = 1024*1024;
+        if(archivo.size > limitePeso){
+          alert("El archivo es demasiado grande. Por favor, elige un archivo más pequeño.")
+          input.value = '';
+        }
+
+      }
+
+      }
+    </script>
+  </body>
+</html>

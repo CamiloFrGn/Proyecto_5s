@@ -1,0 +1,82 @@
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+  integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link href="../static/css/VerticalSidebarNavbar.css" rel="stylesheet" />
+
+<!-- Font Awesome JS -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+  integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+  integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <img src="https://www.cemexcolombia.com/image/layout_set_logo?img_id=65820612&t=1695541096548" width="100%">
+  </div>
+
+  <ul class="list-unstyled components">
+    <p>Navegación</p>
+    <li class="active">
+      <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><img class="icons"
+          src="https://i.ibb.co/QXDYX3v/icons8-trabajo-48.png" /> Reportes Digitales </a>
+      <ul class="collapse list-unstyled" id="homeSubmenu1">
+
+        <li>
+          <a href="/ocr2"><img class="icons"
+              src="https://i.ibb.co/9wXNhVF/icons8-carretilla-elevadora-48.png" />Inspección 360</a>
+        </li>
+        <li>
+          <a href="" target="_blank"><img class="icons"
+              src="https://i.ibb.co/JF3jHzT/icons8-din-mica-positiva-48.png" />Analisis</a>
+        </li>
+      </ul>
+    </li>
+    <li class="active">
+      <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><img class="icons"
+          src="https://i.ibb.co/QXDYX3v/icons8-trabajo-48.png" /> Auditoria 5S </a>
+      <ul class="collapse list-unstyled" id="homeSubmenu2">
+
+        <li>
+          <a href="/evaluacion_5s"><img class="icons"
+              src="https://i.ibb.co/9wXNhVF/icons8-carretilla-elevadora-48.png" />Evaluación</a>
+        </li>
+        <li>
+          <a href="/formulario_descargar_zip"><img class="icons"
+              src="https://i.ibb.co/X5RSYQq/image.png" />Descarga tus imagenes</a>
+        </li>
+      </ul>
+    </li>
+
+
+  </ul>
+
+  <ul class="list-unstyled CTAs">
+    <li>
+      <form method="post" action="{{url_for('logout')}}">
+
+        <button type="submit" class="button_principal">Cerrar Sessión</button>
+
+
+      </form>
+    </li>
+
+  </ul>
+</nav>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+  integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+  integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+    });
+  });
+</script>

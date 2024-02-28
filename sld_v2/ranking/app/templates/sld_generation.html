@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-image: url("background.jpg");
+        background-size: cover;
+        font-family: 'Roboto', sans-serif;
+      }
+      form {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 10px;
+        text-align: center;
+        margin: auto;
+        width: 400px;
+        box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+      }
+      label {
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 30px;
+        color: #4B4F55;
+        text-transform: uppercase;
+      }
+      select {
+        width: 100%;
+        padding: 20px;
+        margin: 20px 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 30px;
+        background-color: #F7F8FC;
+        font-size: 16px;
+        color: #202124;
+      }
+      button[type="submit"] {
+        background: linear-gradient(to bottom, #13B0FF, #0096E0);
+        color: #ffffff;
+        font-size: 18px;
+        padding: 20px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-top: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.2s ease-in-out;
+      }
+      button[type="submit"]:hover {
+        background: linear-gradient(to bottom, #0096E0, #13B0FF);
+        transform: translateY(-3px);
+      }
+      img {
+        display: block;
+        margin: auto;
+        width: 200px;
+        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <img src="..\img\cemex-logo.png">
+      <label for="username">Cluster</label>
+      <select id="cluster" name="cluster" required>
+        <option value="">---SELECT---</option>
+        <option value="CLUSTER CENTRO">CLUSTER CENTRO</option>
+
+        </select>
+  
+      <button type="submit">Generate</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Alerta</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(window).on('load', function () {
+      $('#myModal').modal('show');
+    }); 
+
+
+  </script>
+  <style>
+    .modal-content {
+      width: 400px;
+      height: 500px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+    }
+    
+
+    .modal-body { 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+      }
+
+    p {
+      font-family: 'Montserrat';
+      font-size: 18px;
+      color: black;
+      margin-top: 7px;
+      margin-bottom: 0;
+      
+    }
+
+  
+
+    .modal-dialog {
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    .image-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-check {
+      width: 162px;
+      height: 43px;
+      left: 39px;
+      top: 677px;
+      background-color: #0FA958;
+      color: #fFFFFF;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 15px;
+      transition: all .5s ease;
+    }
+    .btn-check:hover{
+      background-color:#20f081;      
+      color: black;
+    }
+
+    .modal-title {
+      font-size: xx-large;
+      font-weight: bold;
+      color: #0FA958;
+    }
+
+    .image-content {
+      padding: 10px;
+      width:70%;
+      height: auto;
+
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .modal-header {
+      height: 15%;
+      display: flex;
+      justify-content: end;
+      border: 0px;
+    }
+
+    .close-btn {
+      border: none;
+      background-color: transparent;
+
+    }
+    .close-btn:hover{
+     opacity: 70%;
+    }
+    .flip-in-diag-2-br{animation:flip-in-diag-2-br 1.6s cubic-bezier(.25,.46,.45,.94) both}
+    @keyframes flip-in-diag-2-br{0%{transform:rotate3d(-1,1,0,-80deg);opacity:0}100%{transform:rotate3d(1,1,0,0deg);opacity:1}}
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div id='fondo'class="modal-content">
+          <div class="modal-header" role="document">            
+          </div>
+          <div class="modal-body">
+            <h4 class="modal-title">¡ EXITO !</h4>
+            <div class="image-content flip-in-diag-2-br">
+              <img src="https://i.ibb.co/W0hdTYS/Group-1.png">
+            </div>
+            <div class="modal-body">
+              <p>Registrado exitosamente<p>
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn-check" onclick="history.back()">Aceptar</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
